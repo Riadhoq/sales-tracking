@@ -27,6 +27,13 @@ namespace backend
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
+            services.AddCors(o => o.AddPolicy("CorsPolicy", builder =>
+            {
+                builder.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader();
+            }));
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -48,6 +55,7 @@ namespace backend
 
             app.UseRouting();
 
+            app.UseCors("CorsPolicy");
             // app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

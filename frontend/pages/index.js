@@ -1,5 +1,6 @@
 import Head from "next/head";
 import Link from "next/link";
+import { Navbar } from "../components/Navbar";
 import styles from "../styles/Home.module.css";
 
 export default function Home() {
@@ -9,7 +10,6 @@ export default function Home() {
         <title>Sales Tracking App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
       <main className={styles.main}>
         <h1 className={styles.title}>BeSpoked Bikes</h1>
 

@@ -1,5 +1,14 @@
+import TabularData from "../components/TabularData";
+
 export default function Products({ data }) {
-  return <>{JSON.stringify(data)}</>;
+  console.log();
+  return (
+    <TabularData
+      caption={"Products"}
+      headers={Object.getOwnPropertyNames(data[0])}
+      values={data.map((x) => Object.values(x))}
+    />
+  );
 }
 
 Products.getInitialProps = async (ctx) => {

@@ -1,6 +1,5 @@
 using System.Threading.Tasks;
 using Data;
-using Domain.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -17,9 +16,9 @@ namespace backend.Controllers
             _logger = logger;
         }
 
-        [HttpGet("products")]
+        [HttpGet("sales")]
         public async Task<ActionResult> Get(){
-           return Ok(await _unitOfWork.Products.GetAll());
+           return Ok(await _unitOfWork.Sales.GetAll());
         }
     }
 }

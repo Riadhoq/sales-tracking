@@ -22,7 +22,7 @@ namespace Data.Repositories
             return await _entities.FindAsync(id);
         }
 
-        public async Task<IEnumerable<TEntity>> GetAll()
+        public virtual async Task<IEnumerable<TEntity>> GetAll()
         {
             return await _entities.ToListAsync();
         }

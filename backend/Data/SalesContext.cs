@@ -20,6 +20,7 @@ namespace Data {
             modelBuilder.ApplyConfiguration<Salesperson>(new SalespersonConfiguration());
             modelBuilder.ApplyConfiguration<Customer>(new CustomerConfiguration());
             modelBuilder.ApplyConfiguration<Discount>(new DiscountConfiguration());
+            modelBuilder.ApplyConfiguration<Sale>(new SaleConfiguration());
         }
 
     }

@@ -15,15 +15,38 @@ namespace Data.EntityConfiguration {
 
             builder
                 .Property(p => p.PurchasePrice)
-                .HasPrecision(18,2);
+                .HasPrecision(18, 2);
 
             builder
                 .Property(p => p.SalePrice)
-                .HasPrecision(18,2);
+                .HasPrecision(18, 2);
 
             builder
                 .Property(p => p.CommissionPercentage)
-                .HasPrecision(8,2);
+                .HasPrecision(8, 2);
+                
+            SeedProduct(builder);
+        }
+
+        private static void SeedProduct(EntityTypeBuilder<Product> builder)
+        {
+            for (var i = 1; i <= 10; i++)
+            {
+                builder
+                    .HasData(
+                        new Product
+                        {
+                            ProductId = i,
+                            Name = $"Bike {i}",
+                            Manufacturer = $"Manufacturer {i}",
+                            Style = $"Style {i}",
+                            PurchasePrice = 100.00M * i,
+                            SalePrice = 120.00M * i,
+                            QuantityOnHand = 10,
+                            CommissionPercentage = 2.00M * i
+                        }
+                    );
+            }
         }
     }
 }

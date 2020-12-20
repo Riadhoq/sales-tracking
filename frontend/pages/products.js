@@ -1,13 +1,19 @@
+import { Flex } from "@chakra-ui/react";
+import Product from "../components/Product";
 import TabularData from "../components/TabularData";
 
 export default function Products({ data }) {
-  console.log();
   return (
-    <TabularData
-      caption={"Products"}
-      headers={Object.getOwnPropertyNames(data[0])}
-      values={data.map((x) => Object.values(x))}
-    />
+    // <TabularData
+    //   caption={"Products"}
+    //   headers={Object.getOwnPropertyNames(data[0])}
+    //   values={data.map((x) => Object.values(x))}
+    // />
+    <Flex px={10} py={10} maxW={800} mx="auto" gridGap="10px" wrap="wrap">
+      {data.map((product) => (
+        <Product key={product.productId} data={product} />
+      ))}
+    </Flex>
   );
 }
 

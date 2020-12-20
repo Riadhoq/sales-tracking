@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Data;
+using Data.Repositories;
+using Domain.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -30,6 +32,13 @@ namespace backend
         {
             services.AddDbContext<SalesContext>(options => options.UseSqlServer(
                 Configuration.GetConnectionString("Default")));
+
+            services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped<ICustomerRepository, CustomerRepository>();
+            services.AddScoped<ISalespersonRepository, SalespersonRepository>();
+            services.AddScoped<IDiscountRepository, DiscountRepository>();
+            services.AddScoped<ISaleRepository, SaleRepository>();
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

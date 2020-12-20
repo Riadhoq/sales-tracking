@@ -13,7 +13,7 @@ namespace Domain.Repositories
         Task<TEntity> SingleOrDefault(Expression<Func<TEntity, bool>> predicate);
 
         void Add(TEntity entity);
-        void Update(TEntity entity, int id);
-        void Remove(int id);
+        void Update(TEntity entity);
+        void Remove(TEntity entity);
     }
 }

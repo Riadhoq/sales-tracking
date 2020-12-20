@@ -43,23 +43,13 @@ namespace Data.Repositories
             await _entities.AddAsync(entity);
         }
 
-        public async void Update(TEntity entity, int id)
+        public void Update(TEntity entity)
         {
-            var oldEntity = await _entities.FindAsync(id);
-
-            if(oldEntity == null)
-                throw new Exception("Entity to update not found");
-
             _entities.Update(entity);
         }
 
-        public async void Remove(int id)
+        public void Remove(TEntity entity)
         {
-            var entity = await _entities.FindAsync(id);
-
-            if(entity == null)
-                throw new Exception("Entity to delete not found");
-
             _entities.Remove(entity);
         }
 

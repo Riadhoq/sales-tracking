@@ -10,9 +10,9 @@ namespace backend.Controllers
     [ApiController]
     [Route("api/products")]
     public class ProductController: ControllerBase {
-        private readonly ILogger<TestController> _logger;
+        private readonly ILogger<ProductController> _logger;
         private IUnitOfWork _unitOfWork;
-        public ProductController(IUnitOfWork unitOfWork, ILogger<TestController> logger)
+        public ProductController(IUnitOfWork unitOfWork, ILogger<ProductController> logger)
         {
             _unitOfWork = unitOfWork;
             _logger = logger;

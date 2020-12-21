@@ -40,7 +40,7 @@ const SalespersonEdit = (props) => {
           : undefined;
 
         var response = await fetch(
-          `http://localhost:5000/api/salespeople/edit/${values.salespersonId}`,
+          `${process.env.apiBaseUrl}/salespeople/edit/${values.salespersonId}`,
           {
             method: "PUT",
             body: JSON.stringify(values),
@@ -180,7 +180,7 @@ const SalespersonEdit = (props) => {
 };
 
 export async function getServerSideProps({ params }) {
-  const res = await fetch(`http://localhost:5000/api/salespeople/${params.id}`);
+  const res = await fetch(`${process.env.apiBaseUrl}/salespeople/${params.id}`);
   const data = await res.json();
   return { props: { ...data } };
 }

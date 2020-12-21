@@ -36,7 +36,7 @@ const SalespersonEdit = (props) => {
     onSubmit: async (values) => {
       try {
         var response = await fetch(
-          `http://localhost:5000/api/products/edit/${values.productId}`,
+          `${process.env.apiBaseUrl}/products/edit/${values.productId}`,
           {
             method: "PUT",
             body: JSON.stringify(values),
@@ -184,7 +184,7 @@ const SalespersonEdit = (props) => {
 };
 
 export async function getServerSideProps({ params }) {
-  const res = await fetch(`http://localhost:5000/api/products/${params.id}`);
+  const res = await fetch(`${process.env.apiBaseUrl}/products/${params.id}`);
   const data = await res.json();
   return { props: { ...data } };
 }

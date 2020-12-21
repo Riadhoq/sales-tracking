@@ -32,9 +32,9 @@ namespace backend.Controllers
         public async Task<ActionResult<Product>> Index(Product product) {
 
             if(!ModelState.IsValid)
-                return NoContent();
+                return BadRequest();
 
-            _unitOfWork.Products.Add(product);
+            await _unitOfWork.Products.Add(product);
             await _unitOfWork.Complete();
 
             return Ok(product);

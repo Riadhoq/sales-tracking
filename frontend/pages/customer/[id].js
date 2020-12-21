@@ -44,7 +44,7 @@ const Customer = (props) => {
 };
 
 export async function getServerSideProps({ params }) {
-  const res = await fetch(`http://localhost:5000/api/customers/${params.id}`);
+  const res = await fetch(`${process.env.apiBaseUrl}/customers/${params.id}`);
   const data = await res.json();
   return { props: { ...data } };
 }

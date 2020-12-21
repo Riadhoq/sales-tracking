@@ -68,9 +68,9 @@ const Salesperson = (props) => {
 };
 
 export async function getServerSideProps({ params }) {
-  const res = await fetch(`http://localhost:5000/api/salespeople/${params.id}`);
+  const res = await fetch(`${process.env.apiBaseUrl}/salespeople/${params.id}`);
   const res2 = await fetch(
-    `http://localhost:5000/api/salespeople/commission/${params.id}`
+    `${process.env.apiBaseUrl}/salespeople/commission/${params.id}`
   );
   const data = await res.json();
   const commissionMoney = await res2.json();

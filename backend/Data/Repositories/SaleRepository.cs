@@ -26,13 +26,13 @@ namespace Data.Repositories
                                     .ToListAsync();
         }
 
-        public override async void Add(Sale sale) {
+        public override async Task Add(Sale sale) {
 
             var transaction =_context.Database.BeginTransaction();
             
             var product = _context.Products.Find(sale.ProductId);
             if(product == null || product.QuantityOnHand <= 0) {
-                return;
+                throw new NotSupportedException("Product is not available");
             }
 
             try {
@@ -43,6 +43,7 @@ namespace Data.Repositories
                 await transaction.CommitAsync();
             } catch {
                 await transaction.RollbackAsync();
+                throw new Exception("Sale could not be added");
             }
         }
     }

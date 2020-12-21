@@ -12,7 +12,7 @@ namespace Domain.Repositories
         Task<IEnumerable<TEntity>> Find(Expression<Func<TEntity, bool>> predicate);
         Task<TEntity> SingleOrDefault(Expression<Func<TEntity, bool>> predicate);
 
-        void Add(TEntity entity);
+        Task Add(TEntity entity);
         void Update(TEntity entity);
         void Remove(TEntity entity);
     }

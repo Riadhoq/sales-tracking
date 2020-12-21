@@ -12,7 +12,7 @@ export default function Salespeople({ data }) {
 }
 
 Salespeople.getInitialProps = async (ctx) => {
-  const res = await fetch("http://localhost:5000/api/salespeople");
+  const res = await fetch(`${process.env.apiBaseUrl}/salespeople`);
   const data = await res.json();
   return { data };
 };

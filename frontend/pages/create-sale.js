@@ -30,13 +30,14 @@ const CreateSale = (props) => {
     },
     onSubmit: async (values) => {
       try {
-        var response = await fetch(`http://localhost:5000/api/sales/`, {
+        var response = await fetch(`${process.env.apiBaseUrl}/sales/`, {
           method: "POST",
           body: JSON.stringify(values),
           headers: {
             "Content-Type": "application/json",
           },
         });
+
         if (response.status === 200) {
           {
             toast({
@@ -47,9 +48,17 @@ const CreateSale = (props) => {
               isClosable: true,
             });
           }
+        } else {
+          toast({
+            title: "Create Unsuccessful",
+            description: JSON.stringify(await response.json()),
+            status: "error",
+            duration: 2000,
+            isClosable: true,
+          });
         }
         return setServerResponse(response);
-      } catch (err) {
+      } catch (error) {
         return setServerResponse(error);
       }
     },

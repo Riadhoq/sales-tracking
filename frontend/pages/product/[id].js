@@ -1,4 +1,5 @@
-import { Box, Flex, Heading, SimpleGrid } from "@chakra-ui/react";
+import { Box, Button, Flex, Heading, SimpleGrid } from "@chakra-ui/react";
+import Link from "next/link";
 
 const Product = (props) => {
   let body = null;
@@ -45,6 +46,13 @@ const Product = (props) => {
         <Flex justifyContent="center">
           <Box color="gray.500">Commission Percentage</Box>
           <Box ml="4">{props.commissionPercentage.toFixed(2)}%</Box>
+        </Flex>
+        <Flex justifyContent="center">
+          <Link href={`/product/edit/${props.productId}`}>
+            <Button bgColor="teal.400" px={3} color="teal.900" type="submit">
+              Edit
+            </Button>
+          </Link>
         </Flex>
       </SimpleGrid>
     </Flex>

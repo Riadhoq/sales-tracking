@@ -48,6 +48,10 @@ const Salesperson = (props) => {
           <Box ml="4">{props.manager}</Box>
         </Flex>
         <Flex justifyContent="center">
+          <Box color="gray.500">Commission Earned</Box>
+          <Box ml="4">${props.commission.toFixed(2)}</Box>
+        </Flex>
+        <Flex justifyContent="center">
           <Link href={`/salesperson/edit/${props.salespersonId}`}>
             <Button bgColor="teal.400" px={3} color="teal.900" type="submit">
               Edit
@@ -61,8 +65,12 @@ const Salesperson = (props) => {
 
 export async function getServerSideProps({ params }) {
   const res = await fetch(`http://localhost:5000/api/salespeople/${params.id}`);
+  const res2 = await fetch(
+    `http://localhost:5000/api/salespeople/commission/${params.id}`
+  );
   const data = await res.json();
-  return { props: { ...data } };
+  const commissionMoney = await res2.json();
+  return { props: { ...data, commission: commissionMoney } };
 }
 
 export default Salesperson;

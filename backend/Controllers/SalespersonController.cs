@@ -66,5 +66,12 @@ namespace backend.Controllers
             return Ok(salesperson);
         }
 
+        [HttpGet("commission/{salespersonId}")]
+        public async Task<ActionResult> GetSalespersonCommission(int salespersonId){
+            var salesperson = await _unitOfWork.Salespeople.Get(salespersonId);
+            if(salesperson == null)
+                return NotFound();
+            return Ok(_unitOfWork.Salespeople.GetSalespersonCommission(salesperson));
+        }
     }
 }

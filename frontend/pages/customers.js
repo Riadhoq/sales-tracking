@@ -1,7 +1,7 @@
 import { Flex } from "@chakra-ui/react";
 import Customer from "../components/Customer";
 
-export default function Salespeople({ data }) {
+export default function Customers({ data }) {
   return (
     <Flex px={10} py={10} maxW={800} mx="auto" gridGap="10px" wrap="wrap">
       {data.map((c) => (
@@ -11,7 +11,7 @@ export default function Salespeople({ data }) {
   );
 }
 
-Salespeople.getInitialProps = async (ctx) => {
+Customers.getInitialProps = async (ctx) => {
   const res = await fetch("http://localhost:5000/api/customers");
   const data = await res.json();
   return { data };

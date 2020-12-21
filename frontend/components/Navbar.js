@@ -1,8 +1,8 @@
 import React from "react";
-import { Box, Flex, Heading, Link } from "@chakra-ui/react";
+import { Flex, Heading, Link } from "@chakra-ui/react";
 import NextLink from "next/link";
 
-export const Navbar = ({}) => {
+export function Navbar() {
   return (
     <Flex
       position="sticky"
@@ -19,7 +19,7 @@ export const Navbar = ({}) => {
             <Heading>Sales Tracker</Heading>
           </Link>
         </NextLink>
-        <Box ml={"auto"}>
+        <Flex wrap="wrap" m={{ base: "auto", md: 0 }} ml={{ md: "auto" }}>
           <NextLink href="/salespeople">
             <Link mr={2}>Salespeople</Link>
           </NextLink>
@@ -32,8 +32,8 @@ export const Navbar = ({}) => {
           <NextLink href="/sales">
             <Link>Sales</Link>
           </NextLink>
-        </Box>
+        </Flex>
       </Flex>
     </Flex>
   );
-};
+}

@@ -2,6 +2,8 @@
 
 ![Sales Tracker](screencapture-localhost-3000.png)
 
+URL: https://sales-tracking.vercel.app/
+
 ## Getting Started
 
 This project is built with .NET 5, Entity Framework Core, SQL Server in the backend and Next.js in the frontend.

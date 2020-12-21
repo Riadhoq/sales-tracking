@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -25,5 +26,24 @@ namespace Data.Repositories
                                     .ToListAsync();
         }
 
+        public override async void Add(Sale sale) {
+
+            var transaction =_context.Database.BeginTransaction();
+            
+            var product = _context.Products.Find(sale.ProductId);
+            if(product == null || product.QuantityOnHand <= 0) {
+                return;
+            }
+
+            try {
+                product.QuantityOnHand -= 1;
+                _context.SaveChanges();
+                sale.SalesDate = DateTimeOffset.Now;
+                await _entities.AddAsync(sale);
+                await transaction.CommitAsync();
+            } catch {
+                await transaction.RollbackAsync();
+            }
+        }
     }
 }

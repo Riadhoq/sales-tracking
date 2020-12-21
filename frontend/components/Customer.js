@@ -39,20 +39,6 @@ function Customer({ data }) {
               Details
             </Box>
           </Link>
-          <Link href={`/customer/edit/${data.customerId}`}>
-            <Box
-              borderRadius="sm"
-              as="button"
-              fontSize="sm"
-              ml="2"
-              px="2"
-              py="1"
-              bgColor="teal.700"
-              color="white"
-            >
-              Edit
-            </Box>
-          </Link>
         </Flex>
       </Box>
     </Box>

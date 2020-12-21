@@ -24,6 +24,10 @@ const Salesperson = (props) => {
         spacing={5}
       >
         <Flex justifyContent="center">
+          <Box color="gray.500">Salesperson Id</Box>
+          <Box ml="4">{props.salespersonId}</Box>
+        </Flex>
+        <Flex justifyContent="center">
           <Box color="gray.500">Address</Box>
           <Box ml="4">{props.address}</Box>
         </Flex>

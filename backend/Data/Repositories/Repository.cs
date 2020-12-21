@@ -38,7 +38,7 @@ namespace Data.Repositories
         }
 
         //TODO: add synchronous methods and rename async methods e.g. Add -> AddAsync
-        public async void Add(TEntity entity)
+        public virtual async void Add(TEntity entity)
         {
             await _entities.AddAsync(entity);
         }

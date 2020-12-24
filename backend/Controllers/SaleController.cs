@@ -35,7 +35,8 @@ namespace backend.Controllers
                 return BadRequest();
             try
             {
-                await Task.Run(() => _unitOfWork.Sales.Add(sale));
+                // await Task.Run(() => _unitOfWork.Sales.Add(sale));
+                await _unitOfWork.Sales.Add(sale);
                 await _unitOfWork.Complete();
                 return Ok(sale);
             }

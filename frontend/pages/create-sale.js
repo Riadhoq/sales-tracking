@@ -18,10 +18,10 @@ import {
 import { useFormik } from "formik";
 import { useState } from "react";
 
-const CreateSale = (props) => {
+const CreateSale = () => {
   const [serverResponse, setServerResponse] = useState(null);
   const toast = useToast();
-
+  const route = useRouter();
   const formik = useFormik({
     initialValues: {
       productId: 0,
@@ -39,15 +39,14 @@ const CreateSale = (props) => {
         });
 
         if (response.status === 200) {
-          {
-            toast({
-              title: "Create Successful",
-              description: "Sale created succesfully",
-              status: "success",
-              duration: 2000,
-              isClosable: true,
-            });
-          }
+          toast({
+            title: "Create Successful",
+            description: "Sale created succesfully",
+            status: "success",
+            duration: 2000,
+            isClosable: true,
+          });
+          route.back();
         } else {
           toast({
             title: "Create Unsuccessful",

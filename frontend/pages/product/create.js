@@ -1,11 +1,9 @@
 import {
   Alert,
   AlertIcon,
-  Box,
   Button,
   Flex,
   FormControl,
-  FormHelperText,
   FormLabel,
   Heading,
   Input,
@@ -18,38 +16,34 @@ import {
 import { useFormik } from "formik";
 import { useState } from "react";
 
-const ProductEdit = (props) => {
+const ProductCreate = (props) => {
   const [serverResponse, setServerResponse] = useState(null);
   const toast = useToast();
 
   const formik = useFormik({
     initialValues: {
-      productId: props.productId,
-      name: props.name || "",
-      manufacturer: props.manufacturer || "",
-      style: props.style || "",
-      purchasePrice: props.purchasePrice || 0.0,
-      salePrice: props.salePrice || 0.0,
-      quantityOnHand: props.quantityOnHand || 0,
-      commissionPercentage: props.commissionPercentage || 0.0,
+      name: "",
+      manufacturer: "",
+      style: "",
+      purchasePrice: 0.0,
+      salePrice: 0.0,
+      quantityOnHand: 0,
+      commissionPercentage: 0.0,
     },
     onSubmit: async (values) => {
       try {
-        var response = await fetch(
-          `${process.env.apiBaseUrl}/products/edit/${values.productId}`,
-          {
-            method: "PUT",
-            body: JSON.stringify(values),
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        );
+        var response = await fetch(`${process.env.apiBaseUrl}/products/`, {
+          method: "POST",
+          body: JSON.stringify(values),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
         if (response.status === 200) {
           {
             toast({
-              title: "Update Successful",
-              description: "Product updated successfully",
+              title: "Create Successful",
+              description: "Product created successfully",
               status: "success",
               duration: 2000,
               isClosable: true,
@@ -63,18 +57,10 @@ const ProductEdit = (props) => {
     },
   });
 
-  if (!props) {
-    body = (
-      <Box d="flex" justifyContent="center" justifyItems="center">
-        Could not found any results to edit.
-      </Box>
-    );
-  }
-
   return (
     <Flex px={10} py={10} maxW={800} mx="auto" gridGap="10px" wrap="wrap">
       <Heading color="gray.700" w="100%">
-        Edit Product
+        Create Product
       </Heading>
       {serverResponse?.status == 200 ? (
         <Alert mt={2} borderRadius="md" status="success">
@@ -183,10 +169,4 @@ const ProductEdit = (props) => {
   );
 };
 
-export async function getServerSideProps({ params }) {
-  const res = await fetch(`${process.env.apiBaseUrl}/products/${params.id}`);
-  const data = await res.json();
-  return { props: { ...data } };
-}
-
-export default ProductEdit;
+export default ProductCreate;

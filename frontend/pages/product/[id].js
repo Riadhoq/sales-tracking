@@ -1,5 +1,6 @@
 import { Box, Button, Flex, Heading, SimpleGrid } from "@chakra-ui/react";
 import Link from "next/link";
+import DeleteDialogue from "../../components/DeleteDialogue";
 
 const Product = (props) => {
   let body = null;
@@ -53,10 +54,19 @@ const Product = (props) => {
         </Flex>
         <Flex justifyContent="center">
           <Link href={`/product/edit/${props.productId}`}>
-            <Button bgColor="teal.400" px={3} color="teal.900" type="submit">
+            <Button
+              bgColor="teal.400"
+              px={3}
+              mr={3}
+              color="teal.900"
+              type="submit"
+            >
               Edit
             </Button>
           </Link>
+          <DeleteDialogue
+            deleteUrl={`${process.env.apiBaseUrl}/products/delete/${props.productId}`}
+          />
         </Flex>
       </SimpleGrid>
     </Flex>
